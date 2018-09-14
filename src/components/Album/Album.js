@@ -12,7 +12,9 @@ class Album extends Component {
         this.state ={
             album: album,
             currentSong: album.songs[0],
-            isPlaying: false
+            isPlaying: false,
+            isPaused: false,
+            songCurrentlyHovered: null
         }
 
         this.audioElement = document.createElement('audio');
@@ -21,12 +23,12 @@ class Album extends Component {
 
     play() {
         this.audioElement.play();
-        this.setState({ isPlaying: true });
+        this.setState({ isPlaying: true, isPaused: true });
     }
 
     pause() {
         this.audioElement.pause();
-        this.setState({ isPlaying: false });
+        this.setState({ isPlaying: false, isPaused: true });
     }
 
     setSong(song) {
@@ -42,6 +44,33 @@ class Album extends Component {
             if (!isSameSong) { this.setSong(song) }
             this.play();
         }
+    }
+
+    handleMouseEnter(song) {
+        this.setState({songCurrentlyHovered: song});
+    }
+
+    handleMouseLeave(song) {
+        this.setState({songCurrentlyHovered: null});
+    }
+
+    setIcon(song, index) {
+        if (this.state.songCurrentlyHovered === song) {
+            return <ion-icon name="play" />
+        } else if (this.state.currentSong === song && this.state.isPlaying) {
+            return <ion-icon name="pause" />
+        } else if (this.state.currentSong === song && this.state.isPaused) {
+            return <ion-icon name="play" />
+        } 
+        else {
+            return <span>{index + 1}</span>
+        }
+    }
+
+    translateTime(number) {
+        let minutes = Math.floor(number / 60).toString();
+        let seconds = Math.floor(number % 60).toString();
+        return `${minutes}:${seconds}`;
     }
 
     render() {
@@ -64,10 +93,14 @@ class Album extends Component {
                     <tbody>
                         { this.state.album.songs.map((song, index) => {
                             return (
-                                <tr key={ index } className="song" onClick={ () => this.handleSongClick(song) }>
-                                    <td>{ index + 1}</td>
+                                <tr key={ index } 
+                                className="song" 
+                                onClick={ () => this.handleSongClick(song) } 
+                                onMouseEnter={ () => this.handleMouseEnter(song) } 
+                                onMouseLeave={ () => this.handleMouseLeave(song) }>
+                                    <td>{ this.setIcon(song, index) }</td>
                                     <td>{ song.title }</td>
-                                    <td>{ parseFloat(song.duration) }</td>
+                                    <td>{ this.translateTime(parseFloat(song.duration)) }</td>
                                 </tr>
                             );
                         })}
