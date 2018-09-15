@@ -111,9 +111,16 @@ class Album extends Component {
         }
     }
 
-    formatTime(number) {
-        let minutes = Math.floor(number / 60).toString();
-        let seconds = Math.floor(number % 60).toString();
+    formatTime(num) {
+        if (typeof num !== "number") {
+            return '-:--';
+        }
+
+        let minutes = Math.floor(num/ 60).toString();
+        let seconds = Math.floor(num % 60).toString();
+        if (seconds.length < 2) {
+            seconds = "0" + seconds;
+        }
         return `${minutes}:${seconds}`;
     }
 
@@ -159,6 +166,7 @@ class Album extends Component {
                 handlePrevClick={() => this.handlePrevClick()}
                 handleNextClick={() => this.handleNextClick()}
                 handleTimeChange={(e) => this.handleTimeChange(e)}
+                formatTime={this.formatTime}
                 />
             </section>
         );

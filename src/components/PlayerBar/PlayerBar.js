@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class PlayerBar extends Component {
     constructor(props) {
         super(props);
-
+        this.formatTime = this.props.formatTime;
     }
 
     render() {
@@ -21,7 +21,7 @@ class PlayerBar extends Component {
                     </button>
                 </section>
                 <section id="time-control">
-                    <div className="current-time">{this.props.currentTime}</div>
+                    <div className="current-time">{this.formatTime(this.props.currentTime)}</div>
                     <input type="range" 
                     className="seek-bar" 
                     value={(this.props.currentTime / this.props.songDuration) || 0} 
@@ -30,7 +30,7 @@ class PlayerBar extends Component {
                     step="0.01"
                     onChange={this.props.handleTimeChange}
                     />
-                    <div className="total-time">{this.props.songDuration}</div>
+                    <div className="total-time">{this.formatTime(this.props.songDuration)}</div>
                 </section>
                 <section id="volume-control">
                     <div className="ion-icon-volume-low">
