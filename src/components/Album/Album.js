@@ -17,6 +17,7 @@ class Album extends Component {
             isPaused: false,
             songCurrentlyHovered: null,
             currentTime: 0,
+            currentVolume: 80,
             duration: album.songs[0].duration
         }
 
@@ -98,6 +99,12 @@ class Album extends Component {
         this.setState({currentTime: newTime});
     }
 
+    handleVolumeChange(e) {
+        const newVolume = e.target.value;
+        this.audioElement.volume = newVolume;
+        this.setState({currentVolume: newVolume});
+    }
+
     setIcon(song, index) {
         if (this.state.songCurrentlyHovered === song) {
             return <ion-icon name="play" />
@@ -161,11 +168,13 @@ class Album extends Component {
                 isPlaying={this.state.isPlaying} 
                 currentSong={this.state.currentSong}
                 currentTime={this.state.currentTime}
+                currentVolume={this.state.currentVolume}
                 songDuration={this.state.duration}
                 handleSongClick={() => this.handleSongClick(this.state.currentSong)}
                 handlePrevClick={() => this.handlePrevClick()}
                 handleNextClick={() => this.handleNextClick()}
                 handleTimeChange={(e) => this.handleTimeChange(e)}
+                handleVolumeChange={(e) => this.handleVolumeChange(e)}
                 formatTime={this.formatTime}
                 />
             </section>
