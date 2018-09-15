@@ -15,11 +15,32 @@ class Album extends Component {
             currentSong: album.songs[0],
             isPlaying: false,
             isPaused: false,
-            songCurrentlyHovered: null
+            songCurrentlyHovered: null,
+            currentTime: 0,
+            duration: album.songs[0].duration
         }
 
         this.audioElement = document.createElement('audio');
         this.audioElement.src = album.songs[0].audioSrc;
+    }
+
+    componentDidMount() {
+        this.eventListeners = {
+            timeUpdate: e => {
+                this.setState({currentTime: this.audioElement.currentTime});
+            },
+            durationChange: e => {
+                this.setState({duration: this.audioElement.duration});
+            }
+        }
+        this.audioElement.addEventListener('timeupdate', this.eventListeners.timeUpdate);
+        this.audioElement.addEventListener('durationchange', this.eventListeners.durationChange);
+    }
+
+    componentWillUnmount() {
+        this.audioElement.src = null;
+        this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeUpdate);
+        this.audioElement.removeEventListener('durationchange', this.eventListeners.durationChange);
     }
 
     play() {
@@ -71,6 +92,12 @@ class Album extends Component {
         this.play();
     }
 
+    handleTimeChange(e) {
+        const newTime = this.audioElement.duration * e.target.value;
+        this.audioElement.currentTime = newTime;
+        this.setState({currentTime: newTime});
+    }
+
     setIcon(song, index) {
         if (this.state.songCurrentlyHovered === song) {
             return <ion-icon name="play" />
@@ -84,7 +111,7 @@ class Album extends Component {
         }
     }
 
-    translateTime(number) {
+    formatTime(number) {
         let minutes = Math.floor(number / 60).toString();
         let seconds = Math.floor(number % 60).toString();
         return `${minutes}:${seconds}`;
@@ -117,7 +144,7 @@ class Album extends Component {
                                 onMouseLeave={ () => this.handleMouseLeave(song) }>
                                     <td>{ this.setIcon(song, index) }</td>
                                     <td>{ song.title }</td>
-                                    <td>{ this.translateTime(parseFloat(song.duration)) }</td>
+                                    <td>{ this.formatTime(parseFloat(song.duration)) }</td>
                                 </tr>
                             );
                         })}
@@ -126,9 +153,12 @@ class Album extends Component {
                 <PlayerBar 
                 isPlaying={this.state.isPlaying} 
                 currentSong={this.state.currentSong}
+                currentTime={this.state.currentTime}
+                songDuration={this.state.duration}
                 handleSongClick={() => this.handleSongClick(this.state.currentSong)}
                 handlePrevClick={() => this.handlePrevClick()}
                 handleNextClick={() => this.handleNextClick()}
+                handleTimeChange={(e) => this.handleTimeChange(e)}
                 />
             </section>
         );
