@@ -1,3 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Frijole');
+@import url('https://fonts.googleapis.com/css?family=Bangers');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  align-items: center;
+}
+
+.App main {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  width: 100%;
+}
+
+header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.App nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3px 3% 3px 3%;
+  background-color: rgba(0,0,0,0.8);
+}
+
+nav .link-wrapper {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Permanent Marker', sans-serif;
+  font-size: 30px;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  margin: 3%;
+}
+
+.navLink:hover {
+  color: #f90989;
 }

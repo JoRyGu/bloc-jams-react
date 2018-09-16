@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+.full-album-detail {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Permanent Marker', sans-serif;
+    justify-content: center;
+    margin: 80px 0;
+}
+
+#album-info {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+#album-info h1 {
+    font-size: 40px;
+    margin-bottom: -10px;
+}
+
+#album-info h2 {
+    margin-bottom: -10px;
+}
+
+#album-cover-art {
+    height: 340px;
+    width: auto;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+}
+
+.publish-info-plus-songs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 30%;
+    text-align: left;
+    margin-left: 3%;
+}
+
+table {
+    width: 75%;
+}
+
+tr:hover {
+    color: #f90989;
+    cursor: pointer;
+}
+
+td {
+    border-bottom: 1px inset rgba(0,0,0,0.2);
+    border-right: 0;
+    border-left: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+#index {
+    width: 25px;
+}
+
+#song-length {
+    width: 20px;
+}

@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    font-family: 'Permanent Marker', sans-serif;
+}
+
+.landing h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.landing .landing-intro {
+    background: linear-gradient(to bottom, #f90989, #5b2053);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 30vh;
+    align-items: center;
+    padding: 15px 2% 15px 2%;
+    color: white;
+    font-family: 'Permanent Marker';
+}
+
+.header-detail {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.site-title {
+    font-size: 120px;
+}
+
+.hero-title {
+    font-size: 40px;
+}
+
+.userPhoto {
+    height: 500px;
+    width: auto;
+    border-radius: 2px;
+}
+
+.choose {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-basis: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 2% 15px 2%;
+    border-top: 2px groove silver;
+}
+
+.choose-details {
+    text-align: center;
+    margin-left: 5%;
+}
+
+.choicePhoto {
+    height: 400px;
+    width: auto;
+    border-radius: 2px;
+}
+
+.selling-points {
+    background-color: #E1E1E1;
+}
+
+.unlimited {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.unlimitedPhoto {
+    height: 400px;
+    width: auto;
+    border-radius: 2px;
+    margin-left: 3%;
+}
+
+.unlimited-details {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.mobile {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mobilePhoto {
+    height: 400px;
+    width: auto;
+    border-radius: 2px;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
